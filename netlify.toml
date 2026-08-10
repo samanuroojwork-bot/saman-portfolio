@@ -1,0 +1,19 @@
+# Static site — no build step. Serve the repository root as-is.
+[build]
+  publish = "."
+
+# Long-cache the immutable media/runtime; HTML stays fresh.
+[[headers]]
+  for = "/uploads/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/vendor/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
