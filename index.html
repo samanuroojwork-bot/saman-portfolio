@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saman Urooj — Editorial Portfolio</title>
+<meta name="description" content="Portfolio of Saman Urooj — video editor, graphic designer and motion designer based in New Delhi. Work across video editing, graphic design, motion graphics, packaging and more." />
+<meta name="author" content="Saman Urooj" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Saman Urooj — Editorial Portfolio" />
+<meta property="og:description" content="Video editing, graphic design and motion graphics. New Delhi." />
+<meta property="og:url" content="https://samanurooj.com" />
+<meta name="twitter:card" content="summary" />
+<!-- React runtime vendored locally so the page does not depend on an external CDN at load time -->
+<script src="./vendor/react.production.min.js"></script>
+<script src="./vendor/react-dom.production.min.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; padding: 0; background: #2A3040; }
+  body { -webkit-font-smoothing: antialiased; }
+  a { color: #362C25; text-decoration: none; }
+  a:hover { color: #362C25; text-decoration: underline; text-underline-offset: 3px; }
+</style>
+</helmet>
+
+<div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:400;position:relative;background:#2A3040">
+
+  <section style="position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:space-between;background:#2A3040;color:#f3f0e9;z-index:0;overflow:hidden">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:22px 40px;font-size:9px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase">
+      <img src="uploads/ChatGPT Image Aug 9, 2026 at 10_32_47 PM.png" alt="Saman Urooj" style="height:16px;display:block" />
+      <nav style="display:flex;gap:20px">
+        <a href="#work" style="color:#f3f0e9">Work</a>
+        <a href="#studio" style="color:#f3f0e9">Studio</a>
+        <a href="#contact" style="color:#f3f0e9">Contact</a>
+      </nav>
+    </div>
+    <div style="display:flex;justify-content:center;align-items:center;flex:1;padding:0 40px">
+      <img src="uploads/ChatGPT Image Aug 9, 2026 at 10_32_47 PM.png" alt="Saman Urooj" style="width:min(60vw,560px);height:auto;display:block" />
+    </div>
+    <div style="padding:22px 40px;font-size:9px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#f3f0e9;display:flex;justify-content:space-between">
+      <span>New Delhi</span>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <div style="position:relative;z-index:1;background:#f3f0e9;color:#362C25">
+
+    <section id="work" style="position:relative;z-index:1;padding:0 0 24px">
+      <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="4">
+        <div style="padding:72px 40px 0;border-bottom:1px solid #E6E2DA">
+          <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:28px;flex-wrap:wrap">
+            <span style="font-size:9.5px;font-weight:300;letter-spacing:0.16em;color:#362C25">{{ cat.index }}</span>
+            <h2 style="margin:0;font-size:20px;line-height:1;font-weight:700;letter-spacing:-0.005em">{{ cat.name }}</h2>
+            <sc-if value="{{ cat.hasCrumbs }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;align-items:baseline;gap:6px">
+                <sc-for list="{{ cat.crumbs }}" as="cr" hint-placeholder-count="2">
+                  <span style="display:flex;align-items:baseline;gap:6px">
+                    <sc-if value="{{ cr.sep }}" hint-placeholder-val="{{ false }}">
+                      <span style="font-size:8.5px;color:#726C61">/</span>
+                    </sc-if>
+                    <button onClick="{{ cr.click }}" style="border:0;background:none;padding:0;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:8.5px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#726C61" style-hover="color:#362C25;text-decoration:underline;text-underline-offset:3px">{{ cr.label }}</button>
+                  </span>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:40px 18px;padding:0 0 8px">
+            <sc-for list="{{ cat.items }}" as="item" hint-placeholder-count="5">
+              <figure style="margin:0;flex:0 0 auto;width:150px">
+                <div onClick="{{ item.click }}" onMouseEnter="{{ item.enter }}" onMouseLeave="{{ item.leave }}" style="position:relative;z-index:{{ item.z }};transform:{{ item.tf }};transition:transform 560ms cubic-bezier(.22,1,.36,1);width:150px;height:188px;background:#EDEAE3;overflow:hidden;cursor:{{ item.cursor }}">
+                  <img alt="" ref="{{ item.ref }}" style="width:100%;height:100%;object-fit:cover;display:block" />
+                  <sc-if value="{{ item.hasClip }}" hint-placeholder-val="{{ false }}">
+                    <video ref="{{ item.vref }}" src="{{ item.clip }}" poster="{{ item.poster }}" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" onTimeUpdate="{{ item.onPlay }}" onLoadedData="{{ item.kick }}" onCanPlay="{{ item.kick }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
+                  </sc-if>
+                </div>
+                <figcaption style="display:flex;justify-content:space-between;gap:10px;margin-top:10px;font-size:9px;font-weight:300;letter-spacing:0.14em;text-transform:uppercase;color:#362C25">
+                  <span style="color:#362C25">{{ item.num }}</span>
+                  <span style="text-align:right;text-wrap:pretty;color:#362C25">{{ item.sub }}</span>
+                </figcaption>
+              </figure>
+            </sc-for>
+          </div>
+          <sc-if value="{{ cat.hasMore }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:28px 0 4px">
+              <button onClick="{{ cat.toggle }}" style="border:0;background:none;padding:0;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:8.5px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#726C61;text-decoration:underline;text-underline-offset:3px" style-hover="color:#362C25">{{ cat.moreLabel }}</button>
+            </div>
+          </sc-if>
+          <div style="height:64px"></div>
+        </div>
+      </sc-for>
+    </section>
+
+    <section id="studio" style="position:relative;z-index:1;padding:80px 40px;display:grid;grid-template-columns:160px minmax(0,460px);gap:40px;border-bottom:1px solid #E6E2DA">
+      <span style="font-size:9px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#726C61">Studio</span>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <p style="margin:0;font-size:12.5px;line-height:1.7;font-weight:400;text-wrap:pretty">I am Saman Urooj, an enthusiastic 23 year old woman based in New Delhi. I have completed my undergraduate program and when I look back at the last 5 years of my life I can certainly conclude my experience as a student of BA in Digital Media and Arts from Delhi Skill and Entrepreneurship University was good, but the work I did as a freelancer alongside my college was great.</p>
+        <p style="margin:0;font-size:12.5px;line-height:1.7;font-weight:400;text-wrap:pretty">I had always been a sports kid and a career in Art and media seemed far fetched until trusted my instincts and realized that this work aligns well with my temperament— as a swimmer I was focused, I practiced many hours, I learnt newer techniques quickly and I adapted to multiple trainers with changing seasons.</p>
+        <p style="margin:0;font-size:12.5px;line-height:1.7;font-weight:400;text-wrap:pretty">My decision to formally pursue this field of education came from acknowledging the surrounding I grew up in; Growing up in a family and friend circle that appreciated good advertisements, dissecting design trends and lauding me for the comic sketches I made as a hobby.</p>
+        <p style="margin:0;font-size:12.5px;line-height:1.7;font-weight:400;text-wrap:pretty">Eventually, I got curious about various mediums of communication and since design, especially, is an integral part of it, I took time to hone these instincts with learning softwares and adapting myself technically.</p>
+        <p style="margin:0;font-size:12.5px;line-height:1.7;font-weight:400;text-wrap:pretty">Currently I am working as a video editor at Revolio Media. And due to my ever growing curiosity, I am looking for more opportunities in the field where I can put my skills of video editing, graphic design and motion graphics to use and experiment with new ways of thinking, creating and communicating through media.</p>
+      </div>
+    </section>
+
+    <section id="contact" style="position:relative;z-index:1;padding:80px 40px;display:grid;grid-template-columns:160px minmax(0,460px);gap:40px;border-bottom:1px solid #E6E2DA">
+      <span style="font-size:9px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#726C61">Contact</span>
+      <div style="display:flex;flex-direction:column;gap:12px;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase">
+        <a href="mailto:samanuroojwork@gmail.com">samanuroojwork@gmail.com</a>
+        <a href="tel:+918595797957">+91 8595797957</a>
+        <a href="https://www.linkedin.com/in/saman-urooj-a718002b2" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </section>
+
+    <footer style="position:relative;z-index:1;display:flex;justify-content:space-between;align-items:baseline;padding:22px 40px 36px;font-size:9px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:#362C25">
+      <img src="uploads/ChatGPT Image Aug 9, 2026 at 10_32_47 PM.png" alt="Saman Urooj" style="height:14px;display:block" />
+      <nav style="display:flex;gap:20px">
+        <a href="#work">Work</a>
+        <a href="#studio">Studio</a>
+        <a href="#contact">Contact</a>
+        <a href="https://www.linkedin.com/in/saman-urooj-a718002b2" target="_blank" rel="noopener">LinkedIn</a>
+      </nav>
+    </footer>
+
+  </div>
+
+  <sc-if value="{{ playing }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closePlayer }}" style="position:fixed;inset:0;z-index:50;background:rgba(42,48,64,0.95);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:40px">
+      <iframe src="{{ playSrc }}" allow="autoplay" allowFullScreen="{{ true }}" style="width:min(80vw,1100px);height:min(64vw,620px);border:0;background:#000"></iframe>
+      <button onClick="{{ closePlayer }}" style="border:0;background:none;padding:0;cursor:pointer;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:8.5px;font-weight:300;letter-spacing:0.18em;text-transform:uppercase;color:#726C61">Close</button>
+    </div>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showSubgroups&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Archive&quot;},&quot;perRow&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:5,&quot;min&quot;:3,&quot;max&quot;:8,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Archive&quot;},&quot;indexFormat&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;(01)&quot;,&quot;01&quot;,&quot;01.&quot;],&quot;default&quot;:&quot;(01)&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Archive&quot;}}">
+
+const VE = [
+  ["Revolio Media", [
+    ["The Sports Women", ["1Ofmtvuze3mr4s8FtiuJV3WC8gury0wKo","1HyGN96I3uNwDDcwbEirspakf0Q_1h_77","1JL4eXM91Q2rYIBrWKBNyAuJaZI6TpgbN","1PngzWv6F69wOXHo2IDS3C4ralNEQYDHz","172oRgZsKd9sHZsg7-VRQYEJLBhyAcpz3","1mVL8LyNREwPwAOtmL3L2L89vv4DF7akF","1WFf9DgnWRRgsRv2ZKDe8bWOZSha1EWAe","1-cDGol-FvXAV9ZdW-A845lfN_8g8sz-_","1kJJnFMsh2VMvaIdcSluNOEhX_P9oES48","1nDrNFLWCqnnzL4CZHwCJDjRIcO2wIlJI","1OVxyqavMmv9Fp2GM-vrowD2DYgeDrBP9","1ZmuSuORgqMZx7sga-VMFbrze0kLYPsqB","1WCQdKxKj1I-rfRJudmtzJQG0dKGN8vHl","1fNcqY7zSLWtSG8i17bk3tLTg50a96Mwx","1sfjzmqmWvnCZV5Mf08QOjtwDvW9qV2u9","14QMT0RFV2mSTyMx9-nO4P7P1ylW2OCaH","1MWOtcH9pV4xLHpVjbhtlMbvdUBtWZIbX","1YFHErxQ1S4iZEDwhlX8cbc28IDvvwlDs","18uwysPX8z2wZNTNBFchin-QbjZvUITsC","1vmjxxBPIPTfDfxSXqp3uIF3Fz_pwgDVO","1B2kajN6tdmTib0Ik7Cpcf2zAN3OzalmN","1g8o3G8O6gatVQyYM0jyX1VRkGaQ9iBTX","1Ji_6Yco4k8zBNTVQXji7ZeRWflRVX36D","1I0-9fuL0AnaD-vZodHI30cLkkRKIP0do","1whiMYKVEIJZI1VWSkZ5j-oiCHaF7FuYT","1Dh43iC--yPTdt_xw0huHdxszmVNXpgn5","1-VD6cua28AReW9EMH_4P_oJImatk04YD","15fpI1-_obNX_M423vqEgySDRcocCkkgQ","1X0b8EhEVGr5w0078Ih2EgENUbk6u6kBb","1gumQEQ_Qd6jZH0uCjQHxSA3wXu_228sN","1x6mEhljrOh3rUdqcLPwnN8Do-YEy5_Fj","17J0ojSn8eGu-LCbXmDCRJ076XjBr2sfT","1cTLG423rq5gJSYZwr1X7fISIjdKlDYBb","1gioGcD6oIbVPnSp7i_iJOlfi2FvnNrY_","1MuiRRC6BCbDHse0Qq8Sy2VWQ1_jesIjo","1MQLwCOgeMXBN2HfnR0Cx142XvUHnlO3-","1O5FJCjzYl4CpGELmT1cycz7DAeI5lFL5","1yiFBPlXgCyf4eC2fCMpT8gFrXAL_9OvC","1WllcIm6hSvRCbkPoOZLAIYGfXP4ha4FA","1mj_vXjl9FGPrmIRfGG-gNg6jLwZ71GTc","141dxviJ9Z6lpvD_ij62K395IXGWHkl2V","1VXFu7khlRiSJLHbh5nFU0duVIDyerCzo","1J6rwkXTyKTLGvfwtFou3YsXegAstZabL","1RbAzd_mMcriSOs8bZDx4hfzxKI96XeQC","1WEYczDPH4Nsop_u1hEBPy4g3S0pdpZJz","1kynLOYHlNCUcrqDQ88KG5Mpjzu1erddH","1Wb237I5q604F-DPhmEt9vBD09u72w6xT","11piliDqQgAgANa7buYrwwT6wG5kLZMoY","1fPrmG_v5TVL8LO0XVj5jnc54KcBGJ7br","1gM6wIfyd_yXkdmbq0fT61lEp88DZGTKB","1gyxDG4vQwUrkYetvTblsmRYSLwxoXQS6","1BDEDz-cW_sPXwU8PSPOgtZrC7CZtaULD","1mxWerqdJ8cVg1evNhOWHOc6gKgshPy9G","1sYvAlVlXPwLPc0Qg39NMWtH-2VX7h7UW","1Zq3VcD3H2JSPHKwzOtQo8ygyrJ4IiOqq","1BIsbndtbEFiMhteXtZyXAWSIIeEZtCD4","1J4jUcW9ZIjcHRIFPvirpH3alvKFZkNNn","1RBSTovvB3ihE2aj0LosAAC0Olj6aZc9K"]],
+    ["Netflix", ["1dq3iXAs-Dq0xxUezDKxswqM7i2uIY42j","1xSGHygzbMiidD4dF_NST7HXpFNwXzScE"]],
+    ["District (Zomato)", ["13_PKIxQuFNY7rSRCp17Kim2ykW6aSs5a","1YL-t_AR_3dHXiX2d8uPCiTdFdFnITbI7","1hf2m1QR4Yfi3nn55gGmcYV4-RNCORMi2","1_tj5cxRLmrmqGt5mU4m5uEV6GzGorNuN","1YfI6tu3K2fmjqN4z5lkRdYMin_CP9-dN","18hjIXq0RhnYedTeVeN6-ocpO0TSN4wnN","1FCQigLBlfN3Uq52j1G6GNMHQzjuT4vKG"]]
+  ], { local: "uploads/revolio media.mp4" }],
+  ["Theatre, Media and Entertainment", [
+    ["LWKY", ["1Xd4xCLOi5PV3uSWVgiQsr3TakATmX26t"]],
+    ["Shimona Bagdi (PD)", ["1AjzPV2nM5mjmSCYrpl0NHBl52HfMSByf"]],
+    ["Farmina NGO", ["1yPNQ77jImoLd4Qe5yjxllKxbub75wHYB","13bgAhbaQ8DIHYz1iDT8X7YAx_5mWP3eG"]],
+    ["Vidya Shah (Singer)", ["1Kpyc2zRc19QhKfHXVyQPmIpR9U-j9Jic","1BJ8z6Wi0Z1W_iJj1wgngy7YMC_MhV2uf","1iasny91yoUoQIbW63M8Kxgu-Pj0W2h2l"]],
+    ["Showreel", ["1-Wlr77PqX-EJmAI6V1tKH6flGUwHLC4C"]]
+  ], { local: "uploads/theater, media and entertainment.mp4" }],
+  ["Product", [
+    ["The Funic Lab", ["1hdkxBVlckQow4-ClpvJcunq9EI4P8B6a"]],
+    ["The Indian Rose", ["1Fk1B4gF97u9B4zYlcOchDDCIcUnUtOOc","1LaCTbN43WyX9qgtQwjP8TjbWJ6xBykGL","1PKeJRkW6w1m4EaWXmIBKBkcKmVbpqe7L"]]
+  ], { local: "uploads/Product tile.mp4" }],
+  ["Fashion", [
+    ["Mohi x Gulbano", ["1YcW8Ey9udy-Q6q_S646r8JqvcI_pCW7I","1BH1-ExwQCeUBJMg6Rssi_0jEQUL16Wj4","1teGj-DqGNJ_HC2LxH_014S9i6LuSzJ5c"]],
+    ["Maybon", ["1zF9vm-0acpK6um7aDg_V0enjgztQJfnm"]],
+    ["So.Man", ["1eYaQVdVAo6FBBNPSDzqYb30hdfYjVuZa","1wx0ujsbfCecxzsr-UjrqPF0CewnKu3gO","1IAF-1Nk-FoWOmjT0xg-3TK8VoECvQIRH","11hWRCfshWdKTcQv61_DJnP6fSwzMeUUX","1-6U4Rl6Ayq_s1Mev9cXxYq2jsqkDjmT6"]],
+    ["Encanto Nails", ["1Zd6aAuuF8U5qk-wHy0YolMhTGSl2qhxC"]],
+    ["Fab.Bae", ["1kvXzzF3YHQ9d4IeUpJbJsmpSPvar4s5E","1WttTWlBTEv4El3S1Zf6Ww2CQto6FbVt-"]],
+    ["Editorial", ["1URTS9A-wEnYubt2YCq_GhSL-xzDMqWNh","17Om30XgJ2N00LGiCanWzdAmGtbuE7pZr"]],
+    ["Yell", ["1EGBk51aOO1oVf3HyakgQXj_-drn_axS7","1dpObBAVuUbrckWZxkAh1y0e_eoGO3qiD","1Kc_1nonRC81m2QnNNNgfh2TQyxbDGT_J"]],
+    ["Casual", ["1DIe-XnFmSHi7Zu3zlRKLykBOrIMASO26","1ACygdyUvpQeSVYxEda6moEAIXh3tL5QM","1SV0OmerpsLdfKFLsHPiXsX86fcWjDcYI","1StRGqjvWcvDojXI_7GVMl058bad_n0xG","19CaNLQIYm-3UFaoZjjazA7I8Xz3Z0Ytm","1th8CV3OODF0uecDfLosS5FSH-x_WS85m","1Sx6F19NuOFIlhnk466MFV8LR9apC8Azj","1Sxuqib9uI3bu_kU4HOQQhcknPeP4F81R","1yLkh2xDpsfDLTM53QzQrtfANhMbaVVdV","1xOs-jEXqy2-vBKRnlGB6Z8Q6LfOe8Uh4","1HRSLfTgzpiBn8D8DWC2r6Eg8e-E1SQyR","1TQayy1dbHNOPIgsHLCW4XFPUUnRYyHGc"]],
+    ["Label Shyam", ["1BAWyCTgMJQsn7b_8M1UA8FwoL-zv4RsW","1E8MklbVD-6PFwhakzSGIDi8psbSetrIS","1mfPhiDecRYn3hVaIs2q2xhTQuDMt8H_n","1pwJgHMVujt222bVehTfZS7x7mfuZj43M","1rU5Q4DWIRcu_3m2tK2ZrAKUgFlvKggOn","1-1HXHvsno60fZw5ScvBmfsgDvxOeFwGq","1TAytqNdhuVIVvVjiwdSXVJok6IcxnhV7","1R22Gi6HYQ55SE_nBSioe5oJz5KyuVehU","1eDNnnmQ8dfpKWE4gvf8yIf_QCkES7vH3"]],
+    ["House of Ananya Agarwal", ["1DJjNChTrli0djJz5kFPajgpyuv3QAIM3","1PyqWKLrDbEAomwwwqRgP9KBd2kkRuyyU"]]
+  ], { local: "uploads/Fashion tile.mp4" }],
+  ["Corporate and Academic", [
+    ["Shiksha.com", ["12TYxHdJauOvcTGGdrBYQpUICHBfQyVBU","1YYErT9Dum8Sf32lLImV5YMbhR97wFR9x","1FJXVeVukc3Zz1CxyNPww9H-J8OKf9xb7"]],
+    ["Joy of Learning NGO", ["16IDLI1IYKyIXy6b1rHbQZaeKty3Mcu9U"]]
+  ], { local: "uploads/corporate and academic.mp4" }],
+  ["Space and Interior", [
+    ["Makan Cafe", ["11qwrMlbHlm5LU75ffMH9qqDJThaOwJAQ"]],
+    ["Colonial Collections", ["1GYEfg0nGCLQ4mvYA2gh1hFnZcSMLVNLk"]],
+    ["Karma Lakelands", ["1X6WOVMBKXacm8luFKGZxwuJohdvZajGi","1nMGTkHp_u0MCu3AAzpf7H9Lyiozo2WTI"]]
+  ], { local: "uploads/space-and-interior_tile.mp4" }],
+  ["Home and Lifestyle", [
+    ["Baeghar", ["16s6E2n4PDachsfE3UB_mwSDtbO6i0pF9","1rVnfNIWMLd4vIIzv4gKVavtvoRe2p-eG","1dM9EnwAlNz8GtxMntTgvCK1cthQ_xw5r","14_2xMjHo5ZqBS7jECQphYBh5yWEplNG5","1G1aE44JrfsG2kM6TUKo3c0Go-3zc-J1b","1eLFyiGskVp5f5Vn66-CllIkNRJNjc4ma"]]
+  ], { local: "uploads/home and lifestyle.mp4" }],
+  ["Food and Restaurant", [
+    ["AK Bar, Pizza Bay", ["1LsIxVYj9xqfv1guGIu4RxZ-34l4v7zaE","1WPGHizXbfQL1uleNuFsbV8A7yc7Fb9s7"]],
+    ["Lake360 Karma Lakelands", ["1ZObg8I_dugPuN4AhqWEXRoUR-X5Y-oUO"]],
+    ["Spice Grill", ["1tT9THVugZlQeC6J3Ua3EoyYKSADaNWui","1pkgdp39ZvawQKZ4JSE_qt3vmCixEqo9C"]],
+    ["Subko x Niro", ["1a0cMnPayln5xPpyT4prEAp8J6CGiIxat"]]
+  ], { local: "uploads/Food and Restaurant tile.mp4" }],
+  ["Podcast", [
+    ["Podcast", ["1nNsSwQYT_A6PcaQY7HeBARlgoJNFfC2F","1L5SMjBLnPvwGaZacS4ME2BL2vpkvJfnW","1scvY_ar_e4rBH9okWpYHfLR32KKK6hbM","1Q8DZcZm4M-wOAS1BluPA4a7i6T0QPsdq","14B6YzyDOGYhvr_FtT-9TB5zi2sVxRLPP","1C4V_DCt7uMKwiwFQia7UCR8_Nqzkm2HI","1mf-jF90hhRBEoKvxAu_gC0p5Cigk4oub","1NzQOjesArq5yhfr1DAAnOleLujutX4Wm","17XD3gDvHXbKBPjmsAdD5E5U81y1tDq27","1WlmJPBXGLXzTjV0Hfm6ituqMP5QXV-JZ","1KvZKnZfvskjn-qW2YhIdQIzafdeKEdxs","19Mvn72SDJ5V7YA_36mKo5CHpBkqj-uF9","1j-44Ky8OKEYbBaCeIqDD8GQwszPbaas3","1UNCpKF3UrDi4lQ_WGrqiHAPAkd7ocpvK","1wrZ0X_bNx0BEpmlXGdfC_OSRny_x3BSq","1jQzEyWOkOVGBtAbykRMJeKAH2bTxtXbQ","1pRMn64s8u7x0I5lGs1t4kvn5GeRv5ZzN","1KRrH6xrqd6Qpn9UWFjyeJoG1R2fWRNtH","1SbYr8rMMttrsJae7w3OAA8ACjIepno_Y","15nrCjlT8_5CcbdM_djePgXvRsxDHasf5","1iwBV3mqoVxDVi2ZuH7OyrbfrkgaBzLB5"]]
+  ], { local: "uploads/podcast.mp4" }]
+];
+
+const GD_IDS = ["10w1ob_ICp2X3QfFbsWr8QoiXPESTmT5-","1oielIpyB_xjZTtbxBZc8dsWWbzno_fBd","1LwoNksOEdCacXQgBcRvMXMLUKp4dOcwE","1a9bPwTkA88WoLNHrf_tva6mh6lcfNE2X","1-U9BN1uvsXZY2R6m6vqj6dWhck7WMOd2","1sNpf-opxWDr2NWp6aWKHn-1haF9By001","1bchKqwDuDtFpYI2dnuOvZ7OlI2M3Bc8t","1LLd1W1PcX8z_jJ0skBvVr1A-TSxXkk4P","129jRorKPaR0eZuNcvITn-rNT4v-AsQcd","1wHigl2lWknId9FiitcAXzJ1-Eo6PJRD9","1i6dOKyF7jXTBhCmMKpIAnwPy5uCY7m6Q","1zbpVdPTzqVK-oGW5Von3t1CMfeiKLYKy","10t42dODvoR7Bn9DvZlG8SvkH7a0uRF06","1I-ejGyMRwJljOwpXi1blpWu_-7hqaNdk","1asCMlHg-fLRtEpx0fkr6Cfh6bVRo91vg","1xdJFLhW5VgI2nhpX4ACVvz5hWQgp8Zep","1f5ErAh0apSmY62D_oRUUIAddv46iQAWc","1V7oc-zuer8d9n9Puzmy5nwdb3lsa4v5i","1ZBaB6Icx1bemUmaTsrtMwbnF7qgBO3lr","1miBcJBugk_L8tZa27zy5lHemE1NCdMA4","11E-vBL46QxpnoOvbbTbjQprJVNm6mfKp","1sY7I-6R7IDmqQqLzL5yVYtzB9eupg1KP","1dSaDS6ZBibTcyloBkql46OIPB2hJd-ee","1H6ahFqxm2IyEtsPUlEmt9EBT7OXONpj0","1gr_TFbYITxiy60Hmor8RPd38cUBJIyB1","1h3iQrNe8MrT8Q7_-6PHagDeeDgsfbUMu","13U7EVvXSOQNS-XE-Y4SSLoLNzIwS33X6","1FpP6NqaoJ7Gn3CAXouYboac9l00d2plO","1PkUpiXY5lwG4gz78Uf6pxaCm7P0vW3lY","1jEssbzSMbklhmQiCRaFLj3WjrvF2e_tW","1nog9iCmGAGTyNFOxQqC2Jtye6IKPeoDs","1pM3ECdsSWdv2ND1z1_2J1J4QueVZa7zq","14FAJNOgKhoKnUdTPExmm8Z34OD5U9pg5","1EOEdCnPvxBcEndLTf0BOLIpRQ4O6spYC","1pbTe1BSJ0QeaOr5VnuDj0NLTxspaDxBA","1AGBrXf0XNOnkch_vOLDfyFnVrYrPYE4w","12hcqGFchVFtL4TEX12TNyvrdHewYEuAZ","18UHLy1qmokdrWMLNYqWljRD30PbR53lP","1yV66Q_ohjBAXbFssqpinNUke2wrIxMML","1Rw72ObhAIBPeoVZiguV1pzEHUm2C3iEE","1kDKM0bvMTBw_2l2qEmQw6JfAY9rnIXL1","1SeoIRSx0bYpR2CVJWeQisdfe3azhcReo","1olJlIfidYygx4zw5wuxK9fxQrIT7FJtg","1F3bDRJ1k1ulRipJZEkzTr8klbQKsAYUK","1PSghdJB5nyZKaxPhSA8hjuUsSpqvvPtt","1GFhD7iFAn-HnXaOu1Q4qwD0AbklctAZu","13L_6h5Yra-B3eNB40rpADUgJxd8KcSk5","16sY5Lpv_DMnu2cKH9GzZTfVY6rN_SKa4","1cgPI7Msc-12JMTe4D7geELbWsB0ebTVK","16sBfRpmkrDpzrzrqnixfVc9apfCWSFLS","1YmTjrYZRe9Ywl8vIWJtYpCe4BKN_3WfX","1bQpUHugRNYI1BHir-EmVaVE1LvAYJ2Ec","1LRr-9pkmRSGc34WdGnnJ64c0BHGumluL","1UwUIz4sQLhmzW2XtxnW28oXTorj1-g4M","19kRImfttfJyOl89H3R5iiXWm2HK29aCO","1Ri9g5Ms5vqkNeVPgAbU-WvTpwN61UYbL","1tsTXXS-CFkXVtooWEjUO6ovPA6NnFNmn","1ECZJ8bDATNLR1G9CJ-MzkOTl6DcSRChN","1eWIRtUldcHye9ktyrxjdaVORsR5qYsm1","1yWIelPSnT8mO1HqcO-d6hQbZAfQi0nsw","134k_-sS-70r3fntYtFdxTjs5ggQNtpXX","1JF8e-Hl3UayCXq1w8Iq-V75Z-EaSKFz0","1CqbSLwvPDoO_AOlKxQhOztsD6PLu4hd0","1A6bVHuYsPLxf663fP0H4ljIW3lCP6d0Q","16CZ6wkghBG_YsUWJunVaUBwlyr3HbXVn","1yyyhMtRwkzMdz8h0MR5RUauhTmeI0gJ2","1eTU6qsbXbwgAw78xU9EwQGLDCaKz5FGb","10thvThOmqWYHP7ibbtYMhOva-y9Nczyn","1zBJSvuo9MFUdX6dHTMrMIu5InJw4cxAi","1AiUrwe2rgBJ5gwmb4jMIg1e1Q-VI7KU9","1BW5rjqrsxcFFRIPdV7M-HpetQF6orNZE","1uZL5AmT2_FIQCXOYduHF3qjR7my2CWaP","1fqOOKjp3uheqYmtkf4_BCShhmPjcnzP0","1dvI-tAuf6gkNPwexSWAxmJZEiav0OzUH","1Dw4GEMw8MyobCThcPafnJyUjEkwF61Rf","1HFqpj_mK7ynRrlkX7EM8rnhmNh4QCY7q","1CKFztpUs4zfb3xIFtfQESbqEP6gnzleg","1XIrP7SpMZPmLcYDJHhX1D-zAib-zW7Si","1W5A11YKXaAzWRK2H-7LbOCixKUN7_mLV","1tc7RU6VPzeNLG1AGs0kKt2gzFOdEfi3A","1rwxpDULYv8RpNhrWxakb_Z7eB2824xDt","1Njbz2OBTBRMX0kz9_M_AQvIGSkpAsFcj","17QXVFiVYZX3hLE9UgXSsI4JgewN_XTJn","1FOhl65_LhQhhpjOqKFAKqS0IjOijes9r","1r7lWXHcg7gXBgAqg8nYXB6MIGh8DAgLO","1sGMppmdav05nxKeVCG2zKNFbByt-6_JS","1iJVDtSQzG43W6ZKWWlv7MKGuyF1r1Rlu","1ToC19EZwOYfr5gTZrF4bCULNs0UA_EiN","1m-E-M815dHaRPCTlpndZACGm9XMJcfzB","1kzbAHvNZ0KM-yqmHXTTGTVg2Ri5VvSEw","1yBgxOkxH_HSkabA7mlWohOtIHes0UAyD","1XBQWIOmi806QVPgUcLnyuFALocXbwhj5","1KIZYMKGQHmmOxqhWgZ_im0-6b3Ry-hM6","1Mu2BgWAYAA5xvSS1_EAh7gUSmvo9QPNd","12qq1nV4h8fdG63PxRsoKnGUqhygc9Kn6","1GX0_CaNTSkGyMYXfmKInwudcbIZH2wxP","17rrfxUJFkm8YcyYP4N94eMgzcj7Hy7I6","1gkh0l6BTGJbFkmJuE3ymCcX03mTVqU7l"];
+
+const MG_IDS = ["14HSU2Al_Tq2NzDRsILOetsG5RNHt9x5Q","1O7IVhIjvpauNQ695lYsb-NWfzBV1V0HL","1FesV8Nckt87fXXJpYts0jwNQOOx1t50i","19HDAl6yThabZhexOysietNw6dAbeNhW0","1LgCPnJkbywo6zTwI1BLO4mEWL9509jmH","1XuWX-mdxnHkxG5ykhC4nW3WYfR3lKu6v","1lUXRsl0J76dGrtd6mAnU15EoKy3IwhT7","11ZliIr8_COYre7A6DXZUJSfAbnRsU7tl","18BFdwgxKyNbBor90j0r3MuYPkz3T9TFS","1potP3k87Ge7mzRx3Jurqc5-Yeu_eY9tw","1jg41WMqINp02BiZJveyMGMRW2lbepAmT","1J7MQJPYa4RDJM-ERPkhH6r0p9P3xEjDF","1qZjZMhpEUw8XaQWTMRpmWGLelYlRswcj","12__D7o3q0xyk1zlI4rHNy5-j-Zr01bib","1hqVTvHpv_1-RFM8YZlq1DZ14CQdv0ipR","1Bau3iWyUG7FTlqKL3jkHBBluctagAaST","1iYavFfBmK0OE-HwiIAA2UY7nTDxVi23m","1d6adAJ1edVdtgzcFsvpNrbUjqSoq8YT4","1TQRvfkViVnzhN0DzzYhHWJ0fKxbKHcdl","1ew-fW0NwmV7Y2q_DyHV1WipUuKk1KS13","1d0HKQK9BgrlOOvqqwNHpkRBaNP8aF8Bx","1a-G_m2QbemXwvqBGryDR0NQzmIdJW71X","1PkuCbgeW9SWBF8iiVrPd-kkPZ3qz5wZj","10UuBf-j8GepPS0gBTB6tmLGiulWX9RXP","1A91TzV7IEqdIDOKQ1Y62e5krsYEZ1dOx","1DQCH8rXotOkYmZ1ywhzL09FkFY1ZQ2ra","1zmAXuatzT4cF6xkjTfj88nFsS2cswxnF","1YiOBVGdViCKXNJ6FWM6XF8AAd_x3Pfew","1JwX_-Ioq0_pbfEW_ctDI0jyrTdyc5lWW","1G7AZUnFS1450HYXWj3wjkG4_kD37-257","1WoFJh3PqkwjtrCNzewk6ssX0f6Su3iST","187nxngvpoQW8vbfBA90QJelFmyiI9k0a","1uof15qR2Is_VaUp4Mvw8dvPgfRRXDjQB","15Oa4HbIDCeuPjJGSewY6OH5jcZOzUEi9","1_UFtm0aTulcWS501jJLZYJwP7kQj6Fkm","1M8NY7CuhLBIWaOrpz4XeNRYsmOSn0Yyp","1W3miL5aKOq4YLNCxJpl0lAJVJT0A6Ije","1HTBymkrlgaThCsRiuAI7nqvaXDJs4XBr","14kVoIkor4NCp7vBP0R8QqCv1IxlR_g5d","18QP5iFZq7ez70klQM-_mORIJqWkw58hu","1LGZ3_A9froALYlNMqD6-boIMBjLIBkNe","1xIxKpckLt89Z93usyBvEvHjF73xXsn-Z","1DYbcEJxrlpU2rrrdO4bm7qgR7iemPeDx"];
+
+const FLAT = [
+  { name: "Graphic Design", slug: "gd", ids: GD_IDS },
+  { name: "Motion Graphics", slug: "mg", ids: MG_IDS },
+  { name: "Comic Design", slug: "cd", ids: [
+    "1TikkypPlLqNVsOzR56Z-VjYhmlybrjTe", "10isXbyuVZEFuaCURdecFyGhCTEXP4IaK",
+    { local: "uploads/7.png" }
+  ]},
+  { name: "Coffee Table Book", slug: "ctb", ids: [{ id: "1xChSgBWogpFLk3DT6J6jmnM4d3uZSU56", poster: "assets/amarris-poster.png", label: "AMARRIS" }] },
+  { name: "Packaging Design", slug: "pd", ids: [
+    { id: "1h45lhgfmIEIGrFaKdc3-no0RsyGStg_m", label: "DILLY - Apple" },
+    { id: "1BB6t4VgcH8KT66t8wH8b0ExpaL0RFLfs", label: "TACOBELL - Nuggets packaging" },
+    { id: "1j1qXoQFmz0I1kaxZCDPu-0VStFtRJB03", label: "TACOBELL - Taco packaging" },
+    { id: "1hu3UPv4kw00AAbhpFxLCdxPUgW9XAuE9", label: "SKECHERS - Socks bag" },
+    { id: "17PPH2c0U0zu4cs3JzTLUWcTuQ25IlB7d", label: "SKECHERS - Accessories" },
+    { id: "1HCV__0Fw2FwPf1SXpKiOMEWuURk2jdfI", label: "SKECHERS - Socks packaging" },
+    { id: "1obuT1aWCBIbXUJj7kXo5ErIMQAREUlLB", label: "URBAN COLOR - Primer packaging" },
+    { id: "1NpSnpqZigrSIB5aoSiccYic-D4E6V-Tm", label: "SKECHERS - Price tag" },
+    { id: "1yEfQM4-av58TXg19GWEJbOVIctCRY2wf", label: "SKECHERS - Eraser & Sharpener" },
+    { id: "1p1iYrNarm81VGxz6rW7KG2IWIvfl-nMi", label: "SKECHERS - Business card" },
+    { id: "1NbE3s3Ha2oZeFWtt2u0qWaQ0uBPoxGSI", label: "SKECHERS - Envelope" },
+    { id: "1AUrfacNfNpwECMyCLjlQpRLHuM5th0We", label: "DILLY - Watermelon" },
+    { id: "17OYYo84hn1TKXQ7ndanNfEcVVD_44VYK", label: "DILLY - Orange" },
+    { id: "1UOGf_YBl_qsIhTGnSMTKyN4iKY-L0m0y", label: "DILLY - Pear" },
+    { id: "1hOaAi8ex04Ar47WKkG0H6YnaGcxDZsgU", label: "DILLY - Basket" },
+    { id: "169Mp9tZ-xWN7Ljw7MSNGLZaqAgv_aO7b", label: "DILLY - Banana" },
+    { id: "1WxJ9nm4Nn5m1HFTQ9IuPHsgfIEkiXKZs", label: "RED BULL - Label" }
+  ]}
+];
+
+const Q = { queue: [], active: 0, max: 4 };
+const pump = () => {
+  while (Q.active < Q.max && Q.queue.length) {
+    const el = Q.queue.shift();
+    const url = el.dataset.src;
+    if (!url || !el.isConnected) continue;
+    Q.active++;
+    let done = false;
+    const release = retry => {
+      if (done) return;
+      done = true;
+      Q.active--;
+      if (retry && !el.dataset.retried && el.isConnected) { el.dataset.retried = "1"; Q.queue.push(el); }
+      pump();
+    };
+    el.onload = () => release(false);
+    el.onerror = () => release(true);
+    setTimeout(() => release(true), 6000);
+    el.src = url;
+  }
+};
+const load = (el, url) => {
+  if (!el || !url || el.dataset.q === url) return;
+  el.dataset.q = url;
+  if (url.indexOf("drive.google.com") === -1) { el.src = url; return; }
+  el.dataset.src = url;
+  Q.queue.push(el);
+  pump();
+};
+const thumb = id => "https://drive.google.com/thumbnail?id=" + id + "&sz=w800";
+const player = id => "https://drive.google.com/file/d/" + id + "/preview";
+const clip = id => "https://drive.usercontent.google.com/download?id=" + id + "&export=download";
+const loop4 = e => { const v = e.target; if (v.currentTime > 4) v.currentTime = 0; };
+const kick = e => { const v = e.target; v.muted = true; v.defaultMuted = true; const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+const onErr = e => {
+  const v = e.target;
+  v.style.display = "none";
+  const img = v.previousElementSibling;
+  if (img) img.style.display = "block";
+};
+
+class Component extends DCLogic {
+  state = { hover: null, expanded: {}, vePath: [], playing: null };
+
+  renderVals() {
+    const pad = n => (n < 10 ? "0" + n : String(n));
+    const fmt = this.props.indexFormat ?? "(01)";
+    const showSub = this.props.showSubgroups ?? true;
+    const perRow = this.props.perRow ?? 5;
+    const hover = this.state.hover;
+    const leave = () => this.setState({ hover: null });
+    const vePath = this.state.vePath;
+
+    const tile = (raw, ci, i) => {
+      let tf = "none", z = 1;
+      if (hover && hover.c === ci) {
+        const d = i - hover.i;
+        if (d === 0) { tf = "scale(1.2)"; z = 3; }
+        else {
+          const off = Math.max(0, 24 - (Math.abs(d) - 1) * 8);
+          tf = "translateX(" + (d > 0 ? off : -off) + "px)";
+        }
+      }
+      const vid = raw.directSrc || (raw.videoId ? clip(raw.videoId) : null);
+      return {
+        num: fmt === "01" ? pad(i + 1) : fmt === "01." ? pad(i + 1) + "." : "(" + pad(i + 1) + ")",
+        sub: showSub ? (raw.sub || "") : "",
+        isStill: !vid,
+        hasClip: !!vid,
+        clip: vid,
+        poster: raw.poster || null,
+        onPlay: loop4,
+        kick,
+        vref: el => { if (el) { el.muted = true; el.defaultMuted = true; el.onerror = onErr; } },
+        tf, z,
+        cursor: raw.onClick ? "pointer" : "default",
+        click: raw.onClick || null,
+        enter: () => this.setState({ hover: { c: ci, i } }),
+        leave,
+        ref: el => load(el, raw.poster)
+      };
+    };
+
+    const cats = [];
+
+    // 01 — Video Editing (nested, mirrors Drive)
+    {
+      const ci = 0;
+      let raws = [];
+      if (vePath.length === 0) {
+        raws = VE.map(([name, clients, cover]) => {
+          const first = cover || clients[0][1][0];
+          const isObj = typeof first === "object";
+          return {
+            poster: isObj ? null : thumb(first),
+            videoId: isObj ? null : first,
+            directSrc: isObj ? first.local : null,
+            sub: name,
+            onClick: () => this.setState({ vePath: [name] })
+          };
+        });
+      } else if (vePath.length === 1) {
+        const entry = VE.find(s => s[0] === vePath[0]);
+        raws = entry[1].map(([cname, ids]) => {
+          const first = ids[0];
+          const isObj = typeof first === "object";
+          return {
+            poster: isObj ? null : thumb(first),
+            videoId: isObj ? null : first,
+            directSrc: isObj ? first.local : null,
+            sub: cname,
+            onClick: () => this.setState(s => ({ vePath: [s.vePath[0], cname] }))
+          };
+        });
+      } else {
+        const entry = VE.find(s => s[0] === vePath[0]);
+        const c = entry[1].find(x => x[0] === vePath[1]);
+        raws = c[1].map(id => {
+          const isObj = typeof id === "object";
+          return {
+            poster: isObj ? null : thumb(id),
+            sub: vePath[1],
+            videoId: isObj ? null : id,
+            directSrc: isObj ? id.local : null,
+            onClick: () => this.setState({ playing: isObj ? { direct: id.local } : id })
+          };
+        });
+      }
+      const crumbs = [{ label: "Video Editing", sep: false, click: () => this.setState({ vePath: [] }) }]
+        .concat(vePath.map((name, idx) => ({
+          label: name,
+          sep: true,
+          click: () => this.setState(s => ({ vePath: s.vePath.slice(0, idx + 1) }))
+        })));
+      const folderMode = vePath.length === 0;
+      const open = !!this.state.expanded.ve;
+      const shown = folderMode || open || raws.length <= perRow ? raws : raws.slice(0, perRow);
+      cats.push({
+        name: "Video Editing",
+        index: "01",
+        hasCrumbs: vePath.length > 0,
+        crumbs,
+        items: shown.map((r, i) => tile(r, ci, i)),
+        hasMore: !folderMode && raws.length > perRow,
+        moreLabel: open ? "See less" : "See more...",
+        toggle: () => this.setState(s => ({ expanded: Object.assign({}, s.expanded, { ve: !s.expanded.ve }) }))
+      });
+    }
+
+    FLAT.forEach((cat, k) => {
+      const ci = k + 1;
+      const raws = cat.ids.map(entry => {
+        const isObj = typeof entry === "object";
+        const local = isObj && entry.local;
+        const id = isObj ? (entry.id || null) : entry;
+        return {
+          poster: local ? entry.local : (isObj && entry.poster ? entry.poster : (id ? thumb(id) : null)),
+          sub: cat.sub || (isObj && entry.label) || "",
+          onClick: id ? () => this.setState({ playing: id }) : null
+        };
+      });
+      const open = !!this.state.expanded[cat.slug];
+      const shown = open || raws.length <= perRow ? raws : raws.slice(0, perRow);
+      cats.push({
+        name: cat.name,
+        index: pad(ci + 1),
+        hasCrumbs: false,
+        crumbs: [],
+        items: shown.map((r, i) => tile(r, ci, i)),
+        hasMore: raws.length > perRow,
+        moreLabel: open ? "See less" : "See more...",
+        toggle: () => this.setState(s => ({ expanded: Object.assign({}, s.expanded, { [cat.slug]: !s.expanded[cat.slug] }) }))
+      });
+    });
+
+    return {
+      categories: cats,
+      playing: !!this.state.playing,
+      playSrc: this.state.playing ? (typeof this.state.playing === "object" ? this.state.playing.direct : player(this.state.playing)) : "",
+      closePlayer: () => this.setState({ playing: null })
+    };
+  }
+}
+
+</script>
+</body>
+</html>
