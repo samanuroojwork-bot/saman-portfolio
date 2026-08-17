@@ -29,6 +29,11 @@
   body { -webkit-font-smoothing: antialiased; }
   a { color: #362C25; text-decoration: none; }
   a:hover { color: #362C25; text-decoration: underline; text-underline-offset: 3px; }
+  /* Casual-copy deterrents: block native image dragging site-wide, and disable
+     text/image selection only inside work-tile media (nav, captions, About,
+     Contact stay selectable as normal). */
+  img { -webkit-user-drag: none; user-drag: none; -webkit-touch-callout: none; }
+  .media-tile, .media-tile * { -webkit-user-select: none; -moz-user-select: none; user-select: none; }
 </style>
 </helmet>
 
@@ -75,7 +80,7 @@
           <div style="display:flex;flex-wrap:wrap;gap:40px 18px;padding:0 0 8px">
             <sc-for list="{{ cat.items }}" as="item" hint-placeholder-count="5">
               <figure style="margin:0;flex:0 0 auto;width:150px">
-                <div onClick="{{ item.click }}" onMouseEnter="{{ item.enter }}" onMouseLeave="{{ item.leave }}" style="position:relative;z-index:{{ item.z }};transform:{{ item.tf }};transition:transform 560ms cubic-bezier(.22,1,.36,1);width:150px;height:188px;background:#EDEAE3;overflow:hidden;cursor:{{ item.cursor }}">
+                <div class="media-tile" onClick="{{ item.click }}" onMouseEnter="{{ item.enter }}" onMouseLeave="{{ item.leave }}" style="position:relative;z-index:{{ item.z }};transform:{{ item.tf }};transition:transform 560ms cubic-bezier(.22,1,.36,1);width:150px;height:188px;background:#EDEAE3;overflow:hidden;cursor:{{ item.cursor }}">
                   <img alt="" ref="{{ item.ref }}" style="width:100%;height:100%;object-fit:cover;display:block" />
                   <sc-if value="{{ item.hasClip }}" hint-placeholder-val="{{ false }}">
                     <video ref="{{ item.vref }}" src="{{ item.clip }}" poster="{{ item.poster }}" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" onTimeUpdate="{{ item.onPlay }}" onLoadedData="{{ item.kick }}" onCanPlay="{{ item.kick }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
@@ -144,8 +149,10 @@
 const VE = [
   ["Revolio Media", [
     ["The Sports Women", ["1Ofmtvuze3mr4s8FtiuJV3WC8gury0wKo","1HyGN96I3uNwDDcwbEirspakf0Q_1h_77","1JL4eXM91Q2rYIBrWKBNyAuJaZI6TpgbN","1PngzWv6F69wOXHo2IDS3C4ralNEQYDHz","172oRgZsKd9sHZsg7-VRQYEJLBhyAcpz3","1mVL8LyNREwPwAOtmL3L2L89vv4DF7akF","1WFf9DgnWRRgsRv2ZKDe8bWOZSha1EWAe","1-cDGol-FvXAV9ZdW-A845lfN_8g8sz-_","1kJJnFMsh2VMvaIdcSluNOEhX_P9oES48","1nDrNFLWCqnnzL4CZHwCJDjRIcO2wIlJI","1OVxyqavMmv9Fp2GM-vrowD2DYgeDrBP9","1ZmuSuORgqMZx7sga-VMFbrze0kLYPsqB","1WCQdKxKj1I-rfRJudmtzJQG0dKGN8vHl","1fNcqY7zSLWtSG8i17bk3tLTg50a96Mwx","1sfjzmqmWvnCZV5Mf08QOjtwDvW9qV2u9","14QMT0RFV2mSTyMx9-nO4P7P1ylW2OCaH","1MWOtcH9pV4xLHpVjbhtlMbvdUBtWZIbX","1YFHErxQ1S4iZEDwhlX8cbc28IDvvwlDs","18uwysPX8z2wZNTNBFchin-QbjZvUITsC","1vmjxxBPIPTfDfxSXqp3uIF3Fz_pwgDVO","1B2kajN6tdmTib0Ik7Cpcf2zAN3OzalmN","1g8o3G8O6gatVQyYM0jyX1VRkGaQ9iBTX","1Ji_6Yco4k8zBNTVQXji7ZeRWflRVX36D","1I0-9fuL0AnaD-vZodHI30cLkkRKIP0do","1whiMYKVEIJZI1VWSkZ5j-oiCHaF7FuYT","1Dh43iC--yPTdt_xw0huHdxszmVNXpgn5","1-VD6cua28AReW9EMH_4P_oJImatk04YD","15fpI1-_obNX_M423vqEgySDRcocCkkgQ","1X0b8EhEVGr5w0078Ih2EgENUbk6u6kBb","1gumQEQ_Qd6jZH0uCjQHxSA3wXu_228sN","1x6mEhljrOh3rUdqcLPwnN8Do-YEy5_Fj","17J0ojSn8eGu-LCbXmDCRJ076XjBr2sfT","1cTLG423rq5gJSYZwr1X7fISIjdKlDYBb","1gioGcD6oIbVPnSp7i_iJOlfi2FvnNrY_","1MuiRRC6BCbDHse0Qq8Sy2VWQ1_jesIjo","1MQLwCOgeMXBN2HfnR0Cx142XvUHnlO3-","1O5FJCjzYl4CpGELmT1cycz7DAeI5lFL5","1yiFBPlXgCyf4eC2fCMpT8gFrXAL_9OvC","1WllcIm6hSvRCbkPoOZLAIYGfXP4ha4FA","1mj_vXjl9FGPrmIRfGG-gNg6jLwZ71GTc","141dxviJ9Z6lpvD_ij62K395IXGWHkl2V","1VXFu7khlRiSJLHbh5nFU0duVIDyerCzo","1J6rwkXTyKTLGvfwtFou3YsXegAstZabL","1RbAzd_mMcriSOs8bZDx4hfzxKI96XeQC","1WEYczDPH4Nsop_u1hEBPy4g3S0pdpZJz","1kynLOYHlNCUcrqDQ88KG5Mpjzu1erddH","1Wb237I5q604F-DPhmEt9vBD09u72w6xT","11piliDqQgAgANa7buYrwwT6wG5kLZMoY","1fPrmG_v5TVL8LO0XVj5jnc54KcBGJ7br","1gM6wIfyd_yXkdmbq0fT61lEp88DZGTKB","1gyxDG4vQwUrkYetvTblsmRYSLwxoXQS6","1BDEDz-cW_sPXwU8PSPOgtZrC7CZtaULD","1mxWerqdJ8cVg1evNhOWHOc6gKgshPy9G","1sYvAlVlXPwLPc0Qg39NMWtH-2VX7h7UW","1Zq3VcD3H2JSPHKwzOtQo8ygyrJ4IiOqq","1BIsbndtbEFiMhteXtZyXAWSIIeEZtCD4","1J4jUcW9ZIjcHRIFPvirpH3alvKFZkNNn","1RBSTovvB3ihE2aj0LosAAC0Olj6aZc9K"]],
-    ["Netflix", ["1dq3iXAs-Dq0xxUezDKxswqM7i2uIY42j","1xSGHygzbMiidD4dF_NST7HXpFNwXzScE"]],
-    ["District (Zomato)", ["13_PKIxQuFNY7rSRCp17Kim2ykW6aSs5a","1YL-t_AR_3dHXiX2d8uPCiTdFdFnITbI7","1hf2m1QR4Yfi3nn55gGmcYV4-RNCORMi2","1_tj5cxRLmrmqGt5mU4m5uEV6GzGorNuN","1YfI6tu3K2fmjqN4z5lkRdYMin_CP9-dN","18hjIXq0RhnYedTeVeN6-ocpO0TSN4wnN","1FCQigLBlfN3Uq52j1G6GNMHQzjuT4vKG"]]
+    ["Netflix", ["1dbw3T5zCNaZ3rhxxvnqnyfacKHxqn11n"]],
+    ["District (Zomato)", ["13_PKIxQuFNY7rSRCp17Kim2ykW6aSs5a","1YL-t_AR_3dHXiX2d8uPCiTdFdFnITbI7","1hf2m1QR4Yfi3nn55gGmcYV4-RNCORMi2","1_tj5cxRLmrmqGt5mU4m5uEV6GzGorNuN","1YfI6tu3K2fmjqN4z5lkRdYMin_CP9-dN","18hjIXq0RhnYedTeVeN6-ocpO0TSN4wnN","1FCQigLBlfN3Uq52j1G6GNMHQzjuT4vKG"]],
+    ["Playdate", ["1oH2sETi0AZt0xGbRzfrfDiVkn5CuPYJT","10APP3coL9N4PzyN8pBiU4X2EXy3q01p1"]],
+    ["Get Aspora", ["1OSjuUkebkdFhmszzSuI3gucDHG20TJwL","1TBX-zCJDieFKZ72CWAAHYn65qpWwwVdr","1IDD__3Rcj4tgIzlXUxc9HqmqJ-gJXbxe"]]
   ], { local: "uploads/revolio media.mp4" }],
   ["Theatre, Media and Entertainment", [
     ["LWKY", ["1Xd4xCLOi5PV3uSWVgiQsr3TakATmX26t"]],
@@ -410,6 +417,17 @@ class Component extends DCLogic {
   }
 }
 
+</script>
+<script>
+(function () {
+  // Casual-copy deterrents (site-wide, not framework-dependent): block the
+  // context menu and native image drag. These are friction, not protection —
+  // screen recording / dev tools always remain a workaround for a determined user.
+  document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+  document.addEventListener('dragstart', function (e) {
+    if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+  });
+})();
 </script>
 </body>
 </html>
