@@ -83,7 +83,7 @@
                 <div class="media-tile" onClick="{{ item.click }}" onMouseEnter="{{ item.enter }}" onMouseLeave="{{ item.leave }}" style="position:relative;z-index:{{ item.z }};transform:{{ item.tf }};transition:transform 560ms cubic-bezier(.22,1,.36,1);width:150px;height:188px;background:#EDEAE3;overflow:hidden;cursor:{{ item.cursor }}">
                   <img alt="" ref="{{ item.ref }}" style="width:100%;height:100%;object-fit:cover;display:block" />
                   <sc-if value="{{ item.hasClip }}" hint-placeholder-val="{{ false }}">
-                    <video ref="{{ item.vref }}" src="{{ item.clip }}" poster="{{ item.poster }}" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" onTimeUpdate="{{ item.onPlay }}" onLoadedData="{{ item.kick }}" onCanPlay="{{ item.kick }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
+                    <video ref="{{ item.vref }}" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" onTimeUpdate="{{ item.onPlay }}" onLoadedData="{{ item.kick }}" onCanPlay="{{ item.kick }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
                   </sc-if>
                 </div>
                 <figcaption style="display:flex;justify-content:space-between;gap:10px;margin-top:10px;font-size:9px;font-weight:300;letter-spacing:0.14em;text-transform:uppercase;color:#362C25">
@@ -152,18 +152,18 @@ const VE = [
     ["Netflix", ["1dbw3T5zCNaZ3rhxxvnqnyfacKHxqn11n"]],
     ["District (Zomato)", ["13_PKIxQuFNY7rSRCp17Kim2ykW6aSs5a","1YL-t_AR_3dHXiX2d8uPCiTdFdFnITbI7","1hf2m1QR4Yfi3nn55gGmcYV4-RNCORMi2","1_tj5cxRLmrmqGt5mU4m5uEV6GzGorNuN","1YfI6tu3K2fmjqN4z5lkRdYMin_CP9-dN","18hjIXq0RhnYedTeVeN6-ocpO0TSN4wnN","1FCQigLBlfN3Uq52j1G6GNMHQzjuT4vKG"]],
     ["Get Aspora", ["1OSjuUkebkdFhmszzSuI3gucDHG20TJwL","1TBX-zCJDieFKZ72CWAAHYn65qpWwwVdr","1IDD__3Rcj4tgIzlXUxc9HqmqJ-gJXbxe"]]
-  ], { local: "uploads/revolio media.mp4" }],
+  ], { local: "uploads/revolio media.mp4", poster: "uploads/revolio-media-poster.jpg" }],
   ["Theatre, Media and Entertainment", [
     ["LWKY", ["1Xd4xCLOi5PV3uSWVgiQsr3TakATmX26t"]],
     ["Shimona Bagdi (PD)", ["1AjzPV2nM5mjmSCYrpl0NHBl52HfMSByf"]],
     ["Farmina NGO", ["1yPNQ77jImoLd4Qe5yjxllKxbub75wHYB","13bgAhbaQ8DIHYz1iDT8X7YAx_5mWP3eG"]],
     ["Vidya Shah (Singer)", ["1Kpyc2zRc19QhKfHXVyQPmIpR9U-j9Jic","1BJ8z6Wi0Z1W_iJj1wgngy7YMC_MhV2uf","1iasny91yoUoQIbW63M8Kxgu-Pj0W2h2l"]],
     ["Showreel", ["1-Wlr77PqX-EJmAI6V1tKH6flGUwHLC4C"]]
-  ], { local: "uploads/theater, media and entertainment.mp4" }],
+  ], { local: "uploads/theater, media and entertainment.mp4", poster: "uploads/theater-media-entertainment-poster.jpg" }],
   ["Product", [
     ["The Funic Lab", ["1hdkxBVlckQow4-ClpvJcunq9EI4P8B6a"]],
     ["The Indian Rose", ["1Fk1B4gF97u9B4zYlcOchDDCIcUnUtOOc","1LaCTbN43WyX9qgtQwjP8TjbWJ6xBykGL","1PKeJRkW6w1m4EaWXmIBKBkcKmVbpqe7L"]]
-  ], { local: "uploads/Product tile.mp4" }],
+  ], { local: "uploads/Product tile.mp4", poster: "uploads/product-tile-poster.jpg" }],
   ["Fashion", [
     ["Mohi x Gulbano", ["1YcW8Ey9udy-Q6q_S646r8JqvcI_pCW7I","1BH1-ExwQCeUBJMg6Rssi_0jEQUL16Wj4","1teGj-DqGNJ_HC2LxH_014S9i6LuSzJ5c"]],
     ["Maybon", ["1zF9vm-0acpK6um7aDg_V0enjgztQJfnm"]],
@@ -175,28 +175,28 @@ const VE = [
     ["Casual", ["1DIe-XnFmSHi7Zu3zlRKLykBOrIMASO26","1ACygdyUvpQeSVYxEda6moEAIXh3tL5QM","1SV0OmerpsLdfKFLsHPiXsX86fcWjDcYI","1StRGqjvWcvDojXI_7GVMl058bad_n0xG","19CaNLQIYm-3UFaoZjjazA7I8Xz3Z0Ytm","1th8CV3OODF0uecDfLosS5FSH-x_WS85m","1Sx6F19NuOFIlhnk466MFV8LR9apC8Azj","1Sxuqib9uI3bu_kU4HOQQhcknPeP4F81R","1yLkh2xDpsfDLTM53QzQrtfANhMbaVVdV","1xOs-jEXqy2-vBKRnlGB6Z8Q6LfOe8Uh4","1HRSLfTgzpiBn8D8DWC2r6Eg8e-E1SQyR","1TQayy1dbHNOPIgsHLCW4XFPUUnRYyHGc"]],
     ["Label Shyam", ["1BAWyCTgMJQsn7b_8M1UA8FwoL-zv4RsW","1E8MklbVD-6PFwhakzSGIDi8psbSetrIS","1mfPhiDecRYn3hVaIs2q2xhTQuDMt8H_n","1pwJgHMVujt222bVehTfZS7x7mfuZj43M","1rU5Q4DWIRcu_3m2tK2ZrAKUgFlvKggOn","1-1HXHvsno60fZw5ScvBmfsgDvxOeFwGq","1TAytqNdhuVIVvVjiwdSXVJok6IcxnhV7","1R22Gi6HYQ55SE_nBSioe5oJz5KyuVehU","1eDNnnmQ8dfpKWE4gvf8yIf_QCkES7vH3"]],
     ["House of Ananya Agarwal", ["1DJjNChTrli0djJz5kFPajgpyuv3QAIM3","1PyqWKLrDbEAomwwwqRgP9KBd2kkRuyyU"]]
-  ], { local: "uploads/Fashion tile.mp4" }],
+  ], { local: "uploads/Fashion tile.mp4", poster: "uploads/fashion-tile-poster.jpg" }],
   ["Corporate and Academic", [
     ["Shiksha.com", ["12TYxHdJauOvcTGGdrBYQpUICHBfQyVBU","1YYErT9Dum8Sf32lLImV5YMbhR97wFR9x","1FJXVeVukc3Zz1CxyNPww9H-J8OKf9xb7"]],
     ["Joy of Learning NGO", ["16IDLI1IYKyIXy6b1rHbQZaeKty3Mcu9U"]]
-  ], { local: "uploads/corporate and academic.mp4" }],
+  ], { local: "uploads/corporate and academic.mp4", poster: "uploads/corporate-academic-poster.jpg" }],
   ["Space and Interior", [
     ["Makan Cafe", ["11qwrMlbHlm5LU75ffMH9qqDJThaOwJAQ"]],
     ["Colonial Collections", ["1GYEfg0nGCLQ4mvYA2gh1hFnZcSMLVNLk"]],
     ["Karma Lakelands", ["1X6WOVMBKXacm8luFKGZxwuJohdvZajGi","1nMGTkHp_u0MCu3AAzpf7H9Lyiozo2WTI"]]
-  ], { local: "uploads/space-and-interior_tile.mp4" }],
+  ], { local: "uploads/space-and-interior_tile.mp4", poster: "uploads/space-interior-poster.jpg" }],
   ["Home and Lifestyle", [
     ["Baeghar", ["16s6E2n4PDachsfE3UB_mwSDtbO6i0pF9","1rVnfNIWMLd4vIIzv4gKVavtvoRe2p-eG","1dM9EnwAlNz8GtxMntTgvCK1cthQ_xw5r","14_2xMjHo5ZqBS7jECQphYBh5yWEplNG5","1G1aE44JrfsG2kM6TUKo3c0Go-3zc-J1b","1eLFyiGskVp5f5Vn66-CllIkNRJNjc4ma"]]
-  ], { local: "uploads/home and lifestyle.mp4" }],
+  ], { local: "uploads/home and lifestyle.mp4", poster: "uploads/home-lifestyle-poster.jpg" }],
   ["Food and Restaurant", [
     ["AK Bar, Pizza Bay", ["1LsIxVYj9xqfv1guGIu4RxZ-34l4v7zaE","1WPGHizXbfQL1uleNuFsbV8A7yc7Fb9s7"]],
     ["Lake360 Karma Lakelands", ["1ZObg8I_dugPuN4AhqWEXRoUR-X5Y-oUO"]],
     ["Spice Grill", ["1tT9THVugZlQeC6J3Ua3EoyYKSADaNWui","1pkgdp39ZvawQKZ4JSE_qt3vmCixEqo9C"]],
     ["Subko x Niro", ["1a0cMnPayln5xPpyT4prEAp8J6CGiIxat"]]
-  ], { local: "uploads/Food and Restaurant tile.mp4" }],
+  ], { local: "uploads/Food and Restaurant tile.mp4", poster: "uploads/food-restaurant-poster.jpg" }],
   ["Podcast", [
     ["Podcast", ["1nNsSwQYT_A6PcaQY7HeBARlgoJNFfC2F","1L5SMjBLnPvwGaZacS4ME2BL2vpkvJfnW","1scvY_ar_e4rBH9okWpYHfLR32KKK6hbM","1Q8DZcZm4M-wOAS1BluPA4a7i6T0QPsdq","14B6YzyDOGYhvr_FtT-9TB5zi2sVxRLPP","1C4V_DCt7uMKwiwFQia7UCR8_Nqzkm2HI","1mf-jF90hhRBEoKvxAu_gC0p5Cigk4oub","1NzQOjesArq5yhfr1DAAnOleLujutX4Wm","17XD3gDvHXbKBPjmsAdD5E5U81y1tDq27","1WlmJPBXGLXzTjV0Hfm6ituqMP5QXV-JZ","1KvZKnZfvskjn-qW2YhIdQIzafdeKEdxs","19Mvn72SDJ5V7YA_36mKo5CHpBkqj-uF9","1j-44Ky8OKEYbBaCeIqDD8GQwszPbaas3","1UNCpKF3UrDi4lQ_WGrqiHAPAkd7ocpvK","1wrZ0X_bNx0BEpmlXGdfC_OSRny_x3BSq","1jQzEyWOkOVGBtAbykRMJeKAH2bTxtXbQ","1pRMn64s8u7x0I5lGs1t4kvn5GeRv5ZzN","1KRrH6xrqd6Qpn9UWFjyeJoG1R2fWRNtH","1SbYr8rMMttrsJae7w3OAA8ACjIepno_Y","15nrCjlT8_5CcbdM_djePgXvRsxDHasf5","1iwBV3mqoVxDVi2ZuH7OyrbfrkgaBzLB5"]]
-  ], { local: "uploads/podcast.mp4" }]
+  ], { local: "uploads/podcast.mp4", poster: "uploads/podcast-poster.jpg" }]
 ];
 
 const GD_IDS = ["10w1ob_ICp2X3QfFbsWr8QoiXPESTmT5-","1oielIpyB_xjZTtbxBZc8dsWWbzno_fBd","1LwoNksOEdCacXQgBcRvMXMLUKp4dOcwE","1a9bPwTkA88WoLNHrf_tva6mh6lcfNE2X","1-U9BN1uvsXZY2R6m6vqj6dWhck7WMOd2","1sNpf-opxWDr2NWp6aWKHn-1haF9By001","1bchKqwDuDtFpYI2dnuOvZ7OlI2M3Bc8t","1LLd1W1PcX8z_jJ0skBvVr1A-TSxXkk4P","129jRorKPaR0eZuNcvITn-rNT4v-AsQcd","1wHigl2lWknId9FiitcAXzJ1-Eo6PJRD9","1i6dOKyF7jXTBhCmMKpIAnwPy5uCY7m6Q","1zbpVdPTzqVK-oGW5Von3t1CMfeiKLYKy","10t42dODvoR7Bn9DvZlG8SvkH7a0uRF06","1I-ejGyMRwJljOwpXi1blpWu_-7hqaNdk","1asCMlHg-fLRtEpx0fkr6Cfh6bVRo91vg","1xdJFLhW5VgI2nhpX4ACVvz5hWQgp8Zep","1f5ErAh0apSmY62D_oRUUIAddv46iQAWc","1V7oc-zuer8d9n9Puzmy5nwdb3lsa4v5i","1ZBaB6Icx1bemUmaTsrtMwbnF7qgBO3lr","1miBcJBugk_L8tZa27zy5lHemE1NCdMA4","11E-vBL46QxpnoOvbbTbjQprJVNm6mfKp","1sY7I-6R7IDmqQqLzL5yVYtzB9eupg1KP","1dSaDS6ZBibTcyloBkql46OIPB2hJd-ee","1H6ahFqxm2IyEtsPUlEmt9EBT7OXONpj0","1gr_TFbYITxiy60Hmor8RPd38cUBJIyB1","1h3iQrNe8MrT8Q7_-6PHagDeeDgsfbUMu","13U7EVvXSOQNS-XE-Y4SSLoLNzIwS33X6","1FpP6NqaoJ7Gn3CAXouYboac9l00d2plO","1PkUpiXY5lwG4gz78Uf6pxaCm7P0vW3lY","1jEssbzSMbklhmQiCRaFLj3WjrvF2e_tW","1nog9iCmGAGTyNFOxQqC2Jtye6IKPeoDs","1pM3ECdsSWdv2ND1z1_2J1J4QueVZa7zq","14FAJNOgKhoKnUdTPExmm8Z34OD5U9pg5","1EOEdCnPvxBcEndLTf0BOLIpRQ4O6spYC","1pbTe1BSJ0QeaOr5VnuDj0NLTxspaDxBA","1AGBrXf0XNOnkch_vOLDfyFnVrYrPYE4w","12hcqGFchVFtL4TEX12TNyvrdHewYEuAZ","18UHLy1qmokdrWMLNYqWljRD30PbR53lP","1yV66Q_ohjBAXbFssqpinNUke2wrIxMML","1Rw72ObhAIBPeoVZiguV1pzEHUm2C3iEE","1kDKM0bvMTBw_2l2qEmQw6JfAY9rnIXL1","1SeoIRSx0bYpR2CVJWeQisdfe3azhcReo","1olJlIfidYygx4zw5wuxK9fxQrIT7FJtg","1F3bDRJ1k1ulRipJZEkzTr8klbQKsAYUK","1PSghdJB5nyZKaxPhSA8hjuUsSpqvvPtt","1GFhD7iFAn-HnXaOu1Q4qwD0AbklctAZu","13L_6h5Yra-B3eNB40rpADUgJxd8KcSk5","16sY5Lpv_DMnu2cKH9GzZTfVY6rN_SKa4","1cgPI7Msc-12JMTe4D7geELbWsB0ebTVK","16sBfRpmkrDpzrzrqnixfVc9apfCWSFLS","1YmTjrYZRe9Ywl8vIWJtYpCe4BKN_3WfX","1bQpUHugRNYI1BHir-EmVaVE1LvAYJ2Ec","1LRr-9pkmRSGc34WdGnnJ64c0BHGumluL","1UwUIz4sQLhmzW2XtxnW28oXTorj1-g4M","19kRImfttfJyOl89H3R5iiXWm2HK29aCO","1Ri9g5Ms5vqkNeVPgAbU-WvTpwN61UYbL","1tsTXXS-CFkXVtooWEjUO6ovPA6NnFNmn","1ECZJ8bDATNLR1G9CJ-MzkOTl6DcSRChN","1eWIRtUldcHye9ktyrxjdaVORsR5qYsm1","1yWIelPSnT8mO1HqcO-d6hQbZAfQi0nsw","134k_-sS-70r3fntYtFdxTjs5ggQNtpXX","1JF8e-Hl3UayCXq1w8Iq-V75Z-EaSKFz0","1CqbSLwvPDoO_AOlKxQhOztsD6PLu4hd0","1A6bVHuYsPLxf663fP0H4ljIW3lCP6d0Q","16CZ6wkghBG_YsUWJunVaUBwlyr3HbXVn","1yyyhMtRwkzMdz8h0MR5RUauhTmeI0gJ2","1eTU6qsbXbwgAw78xU9EwQGLDCaKz5FGb","10thvThOmqWYHP7ibbtYMhOva-y9Nczyn","1zBJSvuo9MFUdX6dHTMrMIu5InJw4cxAi","1AiUrwe2rgBJ5gwmb4jMIg1e1Q-VI7KU9","1BW5rjqrsxcFFRIPdV7M-HpetQF6orNZE","1uZL5AmT2_FIQCXOYduHF3qjR7my2CWaP","1fqOOKjp3uheqYmtkf4_BCShhmPjcnzP0","1dvI-tAuf6gkNPwexSWAxmJZEiav0OzUH","1Dw4GEMw8MyobCThcPafnJyUjEkwF61Rf","1HFqpj_mK7ynRrlkX7EM8rnhmNh4QCY7q","1CKFztpUs4zfb3xIFtfQESbqEP6gnzleg","1XIrP7SpMZPmLcYDJHhX1D-zAib-zW7Si","1W5A11YKXaAzWRK2H-7LbOCixKUN7_mLV","1tc7RU6VPzeNLG1AGs0kKt2gzFOdEfi3A","1rwxpDULYv8RpNhrWxakb_Z7eB2824xDt","1Njbz2OBTBRMX0kz9_M_AQvIGSkpAsFcj","17QXVFiVYZX3hLE9UgXSsI4JgewN_XTJn","1FOhl65_LhQhhpjOqKFAKqS0IjOijes9r","1r7lWXHcg7gXBgAqg8nYXB6MIGh8DAgLO","1sGMppmdav05nxKeVCG2zKNFbByt-6_JS","1iJVDtSQzG43W6ZKWWlv7MKGuyF1r1Rlu","1ToC19EZwOYfr5gTZrF4bCULNs0UA_EiN","1m-E-M815dHaRPCTlpndZACGm9XMJcfzB","1kzbAHvNZ0KM-yqmHXTTGTVg2Ri5VvSEw","1yBgxOkxH_HSkabA7mlWohOtIHes0UAyD","1XBQWIOmi806QVPgUcLnyuFALocXbwhj5","1KIZYMKGQHmmOxqhWgZ_im0-6b3Ry-hM6","1Mu2BgWAYAA5xvSS1_EAh7gUSmvo9QPNd","12qq1nV4h8fdG63PxRsoKnGUqhygc9Kn6","1GX0_CaNTSkGyMYXfmKInwudcbIZH2wxP","17rrfxUJFkm8YcyYP4N94eMgzcj7Hy7I6","1gkh0l6BTGJbFkmJuE3ymCcX03mTVqU7l"];
@@ -305,7 +305,28 @@ class Component extends DCLogic {
         poster: raw.poster || null,
         onPlay: loop4,
         kick,
-        vref: el => { if (el) { el.muted = true; el.defaultMuted = true; el.onerror = onErr; } },
+        vref: el => {
+          if (!el) return;
+          // Set src/poster imperatively (same pattern as the <img> ref below) instead
+          // of templated src=/poster= attributes: those attributes were literal, still
+          // unresolved "{{ item.clip }}" / "{{ item.poster }}" text in the raw markup
+          // for the brief window before React mounts, and browsers fetch a <video>'s
+          // src/poster as soon as they parse the tag — regardless of display:none —
+          // so both engines were issuing a real request for that literal string.
+          if (vid) el.src = vid;
+          const post = raw.poster || null;
+          if (post) el.poster = post;
+          el.muted = true;
+          el.defaultMuted = true;
+          el.onerror = onErr;
+          // Safari/WebKit's autoplay gate is evaluated at mount time and does not
+          // reliably retry just because loadeddata/canplay fires later — call
+          // play() synchronously here too (kick() below remains as a fallback
+          // for videos not yet ready when this ref runs). Chromium was already
+          // fine either way; this is what WebKit needs.
+          const p = el.play();
+          if (p && p.catch) p.catch(() => {});
+        },
         tf, z,
         cursor: raw.onClick ? "pointer" : "default",
         click: raw.onClick || null,
@@ -326,7 +347,7 @@ class Component extends DCLogic {
           const first = cover || clients[0][1][0];
           const isObj = typeof first === "object";
           return {
-            poster: isObj ? null : thumb(first),
+            poster: isObj ? (first.poster || null) : thumb(first),
             videoId: isObj ? null : first,
             directSrc: isObj ? first.local : null,
             sub: name,
@@ -339,7 +360,7 @@ class Component extends DCLogic {
           const first = ids[0];
           const isObj = typeof first === "object";
           return {
-            poster: isObj ? null : thumb(first),
+            poster: isObj ? (first.poster || null) : thumb(first),
             videoId: isObj ? null : first,
             directSrc: isObj ? first.local : null,
             sub: cname,

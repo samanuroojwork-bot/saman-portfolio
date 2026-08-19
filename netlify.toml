@@ -2,6 +2,19 @@
 [build]
   publish = "."
 
+# HTML must always revalidate — this was already Netlify's implicit default
+# (confirmed live: max-age=0, must-revalidate), made explicit here so stale
+# titles/content after a deploy are never a server-caching question again.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, no-cache, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, no-cache, must-revalidate"
+
 # Long-cache the immutable media/runtime; HTML stays fresh.
 [[headers]]
   for = "/uploads/*"

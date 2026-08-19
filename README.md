@@ -1,4 +1,4 @@
-# Saman Urooj — Editorial Portfolio
+# Saman's Portfolio
 
 A single-page static portfolio site. Deployed as plain static files — **no build step required**.
 
