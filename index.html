@@ -319,13 +319,24 @@ class Component extends DCLogic {
           el.muted = true;
           el.defaultMuted = true;
           el.onerror = onErr;
-          // Safari/WebKit's autoplay gate is evaluated at mount time and does not
-          // reliably retry just because loadeddata/canplay fires later — call
-          // play() synchronously here too (kick() below remains as a fallback
-          // for videos not yet ready when this ref runs). Chromium was already
-          // fine either way; this is what WebKit needs.
-          const p = el.play();
-          if (p && p.catch) p.catch(() => {});
+          // A single immediate play() right after setting src can still lose the
+          // race in WebKit: the browser hasn't actually fetched anything yet, the
+          // promise rejects, and its autoplay gate doesn't reliably self-retry from
+          // React's synthetic onLoadedData/onCanPlay (kick(), below) alone — those
+          // are non-bubbling media events and React's delegated-listener wiring can
+          // land a tick after the data event already fired for a fast local file.
+          // Attaching real listeners here, directly on the element at mount time,
+          // removes that dependency entirely: call play() now, and again the
+          // moment the browser itself says it has data, however many times that
+          // takes. Playing an already-playing video is a harmless no-op.
+          const tryPlay = () => {
+            const p = el.play();
+            if (p && p.catch) p.catch(() => {});
+          };
+          tryPlay();
+          el.addEventListener("loadeddata", tryPlay);
+          el.addEventListener("canplay", tryPlay);
+          el.addEventListener("canplaythrough", tryPlay);
         },
         tf, z,
         cursor: raw.onClick ? "pointer" : "default",
