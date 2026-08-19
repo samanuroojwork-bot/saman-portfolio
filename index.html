@@ -83,7 +83,7 @@
                 <div class="media-tile" onClick="{{ item.click }}" onMouseEnter="{{ item.enter }}" onMouseLeave="{{ item.leave }}" style="position:relative;z-index:{{ item.z }};transform:{{ item.tf }};transition:transform 560ms cubic-bezier(.22,1,.36,1);width:150px;height:188px;background:#EDEAE3;overflow:hidden;cursor:{{ item.cursor }}">
                   <img alt="" ref="{{ item.ref }}" style="width:100%;height:100%;object-fit:cover;display:block" />
                   <sc-if value="{{ item.hasClip }}" hint-placeholder-val="{{ false }}">
-                    <video ref="{{ item.vref }}" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" onTimeUpdate="{{ item.onPlay }}" onLoadedData="{{ item.kick }}" onCanPlay="{{ item.kick }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
+                    <video ref="{{ item.vref }}" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" onTimeUpdate="{{ item.onPlay }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
                   </sc-if>
                 </div>
                 <figcaption style="display:flex;justify-content:space-between;gap:10px;margin-top:10px;font-size:9px;font-weight:300;letter-spacing:0.14em;text-transform:uppercase;color:#362C25">
@@ -265,7 +265,6 @@ const thumb = id => "https://drive.google.com/thumbnail?id=" + id + "&sz=w800";
 const player = id => "https://drive.google.com/file/d/" + id + "/preview";
 const clip = id => "https://drive.usercontent.google.com/download?id=" + id + "&export=download";
 const loop4 = e => { const v = e.target; if (v.currentTime > 4) v.currentTime = 0; };
-const kick = e => { const v = e.target; v.muted = true; v.defaultMuted = true; const p = v.play(); if (p && p.catch) p.catch(() => {}); };
 const onErr = e => {
   const v = e.target;
   v.style.display = "none";
@@ -304,7 +303,6 @@ class Component extends DCLogic {
         clip: vid,
         poster: raw.poster || null,
         onPlay: loop4,
-        kick,
         vref: el => {
           if (!el) return;
           // Set src/poster imperatively (same pattern as the <img> ref below) instead
@@ -319,24 +317,22 @@ class Component extends DCLogic {
           el.muted = true;
           el.defaultMuted = true;
           el.onerror = onErr;
-          // A single immediate play() right after setting src can still lose the
-          // race in WebKit: the browser hasn't actually fetched anything yet, the
-          // promise rejects, and its autoplay gate doesn't reliably self-retry from
-          // React's synthetic onLoadedData/onCanPlay (kick(), below) alone — those
-          // are non-bubbling media events and React's delegated-listener wiring can
-          // land a tick after the data event already fired for a fast local file.
-          // Attaching real listeners here, directly on the element at mount time,
-          // removes that dependency entirely: call play() now, and again the
-          // moment the browser itself says it has data, however many times that
-          // takes. Playing an already-playing video is a harmless no-op.
+          // A single immediate play() right after setting src can lose the race in
+          // WebKit (no data has actually arrived yet, the promise rejects). The fix
+          // is exactly one idempotent retry on "canplay" — the standard signal that
+          // the browser judges playback can begin — not several overlapping trigger
+          // points: calling play() again from multiple listeners (loadeddata AND
+          // canplay AND canplaythrough) was empirically worse, not better — it made
+          // WebKit cancel and restart the underlying fetch on each redundant call,
+          // so nothing ever finished loading. { once: true } plus the paused guard
+          // keeps this to exactly one extra attempt, only if the first one lost.
           const tryPlay = () => {
+            if (!el.paused) return;
             const p = el.play();
             if (p && p.catch) p.catch(() => {});
           };
           tryPlay();
-          el.addEventListener("loadeddata", tryPlay);
-          el.addEventListener("canplay", tryPlay);
-          el.addEventListener("canplaythrough", tryPlay);
+          el.addEventListener("canplay", tryPlay, { once: true });
         },
         tf, z,
         cursor: raw.onClick ? "pointer" : "default",
