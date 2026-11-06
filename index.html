@@ -65,6 +65,11 @@
             <span style="font-size:9.5px;font-weight:300;letter-spacing:0.16em;color:#362C25">{{ cat.index }}</span>
             <h2 style="margin:0;font-size:20px;line-height:1;font-weight:700;letter-spacing:-0.005em">{{ cat.name }}</h2>
             <sc-if value="{{ cat.hasCrumbs }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ cat.back }}" aria-label="Back" title="Back" style="border:0;background:none;padding:0;margin-left:2px;cursor:pointer;color:#726C61;display:inline-flex;align-items:center;align-self:center;line-height:0" style-hover="color:#362C25">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="11.25"></circle><path d="M16.75 12H7.25M11 8.25L7.25 12L11 15.75"></path></svg>
+              </button>
+            </sc-if>
+            <sc-if value="{{ cat.hasCrumbs }}" hint-placeholder-val="{{ false }}">
               <div style="display:flex;align-items:baseline;gap:6px">
                 <sc-for list="{{ cat.crumbs }}" as="cr" hint-placeholder-count="2">
                   <span style="display:flex;align-items:baseline;gap:6px">
@@ -402,6 +407,7 @@ class Component extends DCLogic {
         name: "Video Editing",
         index: "01",
         hasCrumbs: vePath.length > 0,
+        back: () => this.setState(st => ({ vePath: st.vePath.slice(0, -1), expanded: Object.assign({}, st.expanded, { ve: false }) })),
         crumbs,
         items: shown.map((r, i) => tile(r, ci, i)),
         hasMore: !folderMode && raws.length > perRow,
@@ -428,6 +434,7 @@ class Component extends DCLogic {
         name: cat.name,
         index: pad(ci + 1),
         hasCrumbs: false,
+        back: null,
         crumbs: [],
         items: shown.map((r, i) => tile(r, ci, i)),
         hasMore: raws.length > perRow,
