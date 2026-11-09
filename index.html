@@ -403,7 +403,7 @@ class Component extends DCLogic {
         })));
       const folderMode = vePath.length === 0;
       const open = !!this.state.expanded.ve;
-      const shown = folderMode || open || raws.length <= perRow ? raws : raws.slice(0, perRow);
+      const shown = raws;
       cats.push({
         name: "Video Editing",
         index: "01",
@@ -411,7 +411,7 @@ class Component extends DCLogic {
         back: () => this.setState(st => ({ vePath: st.vePath.slice(0, -1), expanded: Object.assign({}, st.expanded, { ve: false }) })),
         crumbs,
         items: shown.map((r, i) => tile(r, ci, i)),
-        hasMore: !folderMode && raws.length > perRow,
+        hasMore: false,
         moreLabel: open ? "See less" : "See more...",
         toggle: () => this.setState(s => ({ expanded: Object.assign({}, s.expanded, { ve: !s.expanded.ve }) }))
       });
